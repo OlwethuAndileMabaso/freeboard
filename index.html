@@ -2,12 +2,14 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>freeboard</title>
+    <title>Freeboard Pro</title>
 	<meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
     <meta name="viewport" content = "width = device-width, initial-scale = 1, user-scalable = no" />
     <link href="css/freeboard.min.css" rel="stylesheet" />
+    <link href="css/freeboard-enhanced.css" rel="stylesheet" />
+    <link href="css/widgets-enhanced.css" rel="stylesheet" />
     <script src="js/freeboard.thirdparty.min.js"></script>
     <script type="text/javascript">
         head.js("js/freeboard_plugins.min.js",
@@ -31,6 +33,46 @@
     </script>
 </head>
 <body>
+<!-- ── Top Navigation Bar ──────────────────────────────── -->
+<nav id="top-nav">
+  <div id="nav-left">
+    <button id="sidebar-toggle" title="Toggle Sidebar">☰</button>
+    <span id="board-brand">⚡ Freeboard Pro</span>
+  </div>
+  <div id="nav-center">
+    <span id="fb-clock"></span>
+  </div>
+  <div id="nav-right">
+    <div id="fb-notifications-wrapper">
+      <button id="fb-notif-btn" title="Notifications">🔔 <span id="fb-notif-badge" class="hidden">0</span></button>
+      <div id="fb-notif-dropdown" class="hidden">
+        <div id="fb-notif-list"></div>
+        <button id="fb-notif-clear">Clear All</button>
+      </div>
+    </div>
+    <button id="theme-toggle" title="Toggle Theme">☀️</button>
+  </div>
+</nav>
+
+<!-- ── Left Sidebar ───────────────────────────────────── -->
+<aside id="fb-sidebar">
+  <div class="sidebar-section" id="sidebar-pages">
+    <div class="sidebar-section-header">DASHBOARD PAGES</div>
+    <div id="fb-page-list"></div>
+    <button class="sidebar-action-btn" id="btn-add-page">+ New Page</button>
+  </div>
+  <div class="sidebar-section" id="sidebar-datasources">
+    <div class="sidebar-section-header">DATASOURCES</div>
+    <div class="datasource-list-container">
+      <!-- Datasource list is managed by the existing admin bar -->
+    </div>
+    <button class="sidebar-action-btn" data-bind="pluginEditor: {operation: 'add', type: 'datasource'}">+ Add Datasource</button>
+  </div>
+  <div class="sidebar-section" id="sidebar-plugins">
+    <div class="sidebar-section-header">PLUGINS</div>
+    <div id="plugin-list"></div>
+  </div>
+</aside>
 <div id="board-content">
     <img id="dash-logo" data-bind="attr:{src: header_image}, visible:header_image()">
     <div class="gridster responsive-column-width">
@@ -143,5 +185,16 @@
     </li>
 </script>
 
+<!-- ── Status Bar ──────────────────────────────────────── -->
+<div id="fb-status-bar">
+  <span id="fb-status-datasources">● 0 datasources</span>
+  <span id="fb-status-updated">Last updated: --</span>
+  <span id="fb-status-connection" class="status-connected">● Connected</span>
+</div>
+
+<!-- ── Floating Action Button ─────────────────────────── -->
+<button id="fab-add-widget" title="Add Pane" data-bind="click: createPane">+</button>
+
+<script src="js/freeboard-enhancements.js"></script>
 </body>
 </html>
